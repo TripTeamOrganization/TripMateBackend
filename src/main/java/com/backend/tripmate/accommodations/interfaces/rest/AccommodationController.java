@@ -1,7 +1,10 @@
 package com.backend.tripmate.accommodations.interfaces.rest;
 
+import com.backend.tripmate.accommodations.domain.model.queries.GetAllAccommodationsQuery;
 import com.backend.tripmate.accommodations.domain.services.AccommodationQueryService;
+import com.backend.tripmate.accommodations.infrastructure.persistence.jpa.repositories.AccommodationRepository;
 import com.backend.tripmate.accommodations.interfaces.rest.resources.AccommodationResource;
+import com.backend.tripmate.accommodations.interfaces.rest.transform.AccommodationResourceFromEntityAssembler;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,16 +19,16 @@ public class AccommodationController {
 
     private final AccommodationQueryService accommodationQueryService;
 
-    public AccommodationController(AccommodationCommandService, AccommodationQueryService accommodationQueryService) {
+    public AccommodationController(AccommodationQueryService accommodationQueryService) {
         this.accommodationQueryService = accommodationQueryService;
     }
 
     public ResponseEntity<List<AccommodationResource>> getAllAccommodations() {
         var getAllAccommodationsQuery = new GetAllAccommodationsQuery();
 
-        var accommodations = accommodationsQueryService.handle(getAllAccommodationsQuery);
+        var accommodations = accommodationQueryService.handle(getAllAccommodationsQuery);
 
-        var accommodationResources = accommodations.stream().map(AccommodationResourceFromEntityAssembler::toResourceFromEntity).collect(toList());
+        var accommodationResources = accommodations.stream().map(AccommodationResourceFromEntityAssembler::toResourceFromEntity).toList();
 
         return ResponseEntity.ok(accommodationResources);
     }
