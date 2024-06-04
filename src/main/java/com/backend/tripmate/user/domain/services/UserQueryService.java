@@ -7,5 +7,4 @@ import java.util.List;
 
 public interface UserQueryService {
     List<User> handle(GetAllUserQuery query);
-
 }

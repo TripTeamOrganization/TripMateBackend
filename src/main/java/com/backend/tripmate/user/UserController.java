@@ -5,9 +5,7 @@ import com.backend.tripmate.user.domain.services.UserQueryService;
 import com.backend.tripmate.user.interfaces.rest.resources.UserResource;
 import com.backend.tripmate.user.interfaces.rest.transform.UserResourceFromEntityAssembler;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,24 +22,18 @@ public class UserController {
 
     @GetMapping
     public ResponseEntity<List<UserResource>> getAllUser() {
-        var getAllActivitiesQuery = new GetAllUserQuery();
-        var user = userQueryService.handle(getAllActivitiesQuery);
-        var userResources = user.stream().map(UserResourceFromEntityAssembler::toResourceFromEntity).toList();
+        // Create a new query to get all users
+        var getAllUserQuery = new GetAllUserQuery();
+
+        // Handle the query using the service
+        var users = userQueryService.handle(getAllUserQuery);
+
+        // Convert users to UserResource
+        var userResources = users.stream()
+                .map(UserResourceFromEntityAssembler::toResourceFromEntity)
+                .toList();
+
+        // Return the response entity with the list of user resources
         return ResponseEntity.ok(userResources);
-    }
-
-    public ResponseEntity<List<UserResource>> getAllUser() {
-
-        //getquery
-        var getAllActivitiesQuery = new GetAllUserQuery();
-
-        //hand
-        var user = userQueryService.handle(getAllActivitiesQuery);
-
-        //convert a ActivityResource
-        var activityResources = user.stream().map(ActivityResourceFromEntityAssembler::toResourceFromEntity).toList();
-
-        //return.
-        return ResponseEntity.ok(activityResources);
     }
 }
