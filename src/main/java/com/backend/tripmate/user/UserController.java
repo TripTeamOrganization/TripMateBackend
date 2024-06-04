@@ -4,6 +4,7 @@ import com.backend.tripmate.user.domain.model.queries.GetAllUserQuery;
 import com.backend.tripmate.user.domain.services.UserQueryService;
 import com.backend.tripmate.user.interfaces.rest.resources.UserResource;
 import com.backend.tripmate.user.interfaces.rest.transform.UserResourceFromEntityAssembler;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,6 +28,7 @@ public class UserController {
         var userResources = users.stream().map(UserResourceFromEntityAssembler::toResourceFromEntity).toList();
         return ResponseEntity.ok(userResources);
     }
+
 
     public ResponseEntity<List<UserResource>> getAllUsers() {
 
