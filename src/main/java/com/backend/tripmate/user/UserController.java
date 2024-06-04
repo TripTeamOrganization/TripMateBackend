@@ -22,18 +22,9 @@ public class UserController {
 
     @GetMapping
     public ResponseEntity<List<UserResource>> getAllUser() {
-        // Create a new query to get all users
         var getAllUserQuery = new GetAllUserQuery();
-
-        // Handle the query using the service
         var users = userQueryService.handle(getAllUserQuery);
-
-        // Convert users to UserResource
-        var userResources = users.stream()
-                .map(UserResourceFromEntityAssembler::toResourceFromEntity)
-                .toList();
-
-        // Return the response entity with the list of user resources
+        var userResources = users.stream().map(UserResourceFromEntityAssembler::toResourceFromEntity).toList();
         return ResponseEntity.ok(userResources);
     }
 }
