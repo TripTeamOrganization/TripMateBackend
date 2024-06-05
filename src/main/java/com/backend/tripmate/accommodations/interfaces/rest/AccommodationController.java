@@ -6,6 +6,7 @@ import com.backend.tripmate.accommodations.infrastructure.persistence.jpa.reposi
 import com.backend.tripmate.accommodations.interfaces.rest.resources.AccommodationResource;
 import com.backend.tripmate.accommodations.interfaces.rest.transform.AccommodationResourceFromEntityAssembler;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,6 +24,7 @@ public class AccommodationController {
         this.accommodationQueryService = accommodationQueryService;
     }
 
+    @GetMapping
     public ResponseEntity<List<AccommodationResource>> getAllAccommodations() {
         var getAllAccommodationsQuery = new GetAllAccommodationsQuery();
 
