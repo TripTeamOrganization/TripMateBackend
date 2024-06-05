@@ -16,7 +16,7 @@ public class User {
     @Column(name = "apellidos", length = 50, nullable = false)
     private String apellidos;
 
-    @Column(name = "dni", length = 7, nullable = false)
+    @Column(name = "dni", length = 8, nullable = false)
     private String dni;
 
     @Column(name = "email", length = 60, nullable = false)
