@@ -5,6 +5,7 @@ import com.backend.tripmate.restaurants.domain.services.RestaurantQueryService;
 import com.backend.tripmate.restaurants.interfaces.rest.resources.RestaurantResource;
 import com.backend.tripmate.restaurants.interfaces.rest.transform.RestaurantResourceFromEntityAssembler;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,6 +23,7 @@ public class RestaurantController {
         this.restaurantQueryService = restaurantQueryService;
     }
 
+    @GetMapping
     public ResponseEntity<List<RestaurantResource>> getAllRestaurants() {
         var getAllRestaurantsQuery = new GetAllRestaurantsQuery();
         var restaurants = restaurantQueryService.handle(getAllRestaurantsQuery);
