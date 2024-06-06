@@ -1,10 +1,22 @@
 package com.backend.tripmate.reservation.domain.model.commands;
 
 public class CreateReservationCommand {
+    private Long id;
     private String name;
     private String apellidos;
     private String dni;
     private String email;
+    private String password;
+    private String telefono;
+    private String plan;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -61,9 +73,4 @@ public class CreateReservationCommand {
     public void setPlan(String plan) {
         this.plan = plan;
     }
-
-    private String password;
-    private String telefono;
-    private String plan;
-
 }
