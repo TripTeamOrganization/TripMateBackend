@@ -1,76 +1,39 @@
 package com.backend.tripmate.reservation.domain.model.commands;
 
+import com.backend.tripmate.reservation.domain.model.entities.PaymentMethod;
+import com.backend.tripmate.reservation.domain.model.entities.PriceDetails;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class CreateReservationCommand {
-    private Long id;
-    private String name;
-    private String apellidos;
-    private String dni;
-    private String email;
-    private String password;
-    private String telefono;
-    private String plan;
 
-    public Long getId() {
-        return id;
+    private Long userId;
+    private PaymentMethodInput paymentMethod;
+    private PriceDetailsInput priceDetails;
+
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
-    public String getName() {
-        return name;
+    public PaymentMethodInput getPaymentMethod() {
+        return paymentMethod;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setPaymentMethod(PaymentMethodInput paymentMethod) {
+        this.paymentMethod = paymentMethod;
     }
 
-    public String getApellidos() {
-        return apellidos;
+    public PriceDetailsInput getPriceDetails() {
+        return priceDetails;
     }
 
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
-    }
-
-    public String getDni() {
-        return dni;
-    }
-
-    public void setDni(String dni) {
-        this.dni = dni;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
-    public String getPlan() {
-        return plan;
-    }
-
-    public void setPlan(String plan) {
-        this.plan = plan;
+    public void setPriceDetails(PriceDetailsInput priceDetails) {
+        this.priceDetails = priceDetails;
     }
 }
