@@ -53,24 +53,24 @@ public class ReservationCommandServiceImpl implements ReservationCommandService 
         // Crea un objeto PriceDetails con los datos proporcionados
         PriceDetails priceDetails = new PriceDetails();
         priceDetails.setId(command.getPriceDetails().getId());
-
+        // Verifica si el total es nulo y establece un valor predeterminado si es así
         if (command.getPriceDetails().getTotal() == null) {
-            priceDetails.setTotal(0.0);
+            priceDetails.setTotal(0.0); // Valor predeterminado si total es nulo
         } else {
             priceDetails.setTotal(command.getPriceDetails().getTotal());
         }
         priceDetails.setCuponDescuento(command.getPriceDetails().getCuponDescuento());
 
-
+        // Guarda el PriceDetails en la base de datos
         priceDetails = priceDetailsRepository.save(priceDetails);
 
-
+        // Crea un objeto Reservation con los datos proporcionados
         Reservation reservation = new Reservation();
         reservation.setUser(user);
         reservation.setPaymentMethod(paymentMethod);
         reservation.setPriceDetails(priceDetails);
 
-
+        // Guarda la Reservation en la base de datos
         reservationRepository.save(reservation);
     }
 }
