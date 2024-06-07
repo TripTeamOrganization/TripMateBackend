@@ -4,6 +4,7 @@ import com.backend.tripmate.activities.interfaces.rest.resources.ActivityResourc
 import com.backend.tripmate.activities.domain.model.queries.GetAllActivitiesQuery;
 import com.backend.tripmate.activities.domain.services.ActivityQueryService;
 
+import com.backend.tripmate.activities.interfaces.rest.transform.ActivityResourceFromEntityAssembler;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
