@@ -33,11 +33,11 @@ public class ReservationCommandServiceImpl implements ReservationCommandService 
 
     @Override
     public void handle(CreateReservationCommand command) {
-        // Busca al usuario por su ID
+
         User user = userRepository.findById(command.getUserId())
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
-        // Crea un objeto PaymentMethod con los datos proporcionados
+
         PaymentMethod paymentMethod = new PaymentMethod();
         paymentMethod.setId(command.getPaymentMethod().getId());
         paymentMethod.setNombreTarjeta(command.getPaymentMethod().getNombreTarjeta());
@@ -47,30 +47,30 @@ public class ReservationCommandServiceImpl implements ReservationCommandService 
         paymentMethod.setCodigoSeguridad(command.getPaymentMethod().getCodigoSeguridad());
         paymentMethod.setCodigoPostal(command.getPaymentMethod().getCodigoPostal());
 
-        // Guarda el PaymentMethod en la base de datos
+
         paymentMethod = paymentMethodRepository.save(paymentMethod);
 
-        // Crea un objeto PriceDetails con los datos proporcionados
+
         PriceDetails priceDetails = new PriceDetails();
         priceDetails.setId(command.getPriceDetails().getId());
-        // Verifica si el total es nulo y establece un valor predeterminado si es así
+
         if (command.getPriceDetails().getTotal() == null) {
-            priceDetails.setTotal(0.0); // Valor predeterminado si total es nulo
+            priceDetails.setTotal(0.0);
         } else {
             priceDetails.setTotal(command.getPriceDetails().getTotal());
         }
         priceDetails.setCuponDescuento(command.getPriceDetails().getCuponDescuento());
 
-        // Guarda el PriceDetails en la base de datos
+
         priceDetails = priceDetailsRepository.save(priceDetails);
 
-        // Crea un objeto Reservation con los datos proporcionados
+
         Reservation reservation = new Reservation();
         reservation.setUser(user);
         reservation.setPaymentMethod(paymentMethod);
         reservation.setPriceDetails(priceDetails);
 
-        // Guarda la Reservation en la base de datos
+
         reservationRepository.save(reservation);
     }
 }

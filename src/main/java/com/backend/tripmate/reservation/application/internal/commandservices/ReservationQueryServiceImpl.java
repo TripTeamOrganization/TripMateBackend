@@ -3,6 +3,7 @@ package com.backend.tripmate.reservation.application.internal.commandservices;
 import com.backend.tripmate.reservation.domain.model.entities.Reservation;
 import com.backend.tripmate.reservation.domain.services.ReservationQueryService;
 import com.backend.tripmate.reservation.infrastructure.persistence.jpa.repositories.ReservationRepository;
+import com.backend.tripmate.reservation.domain.model.queries.GetAllReservationQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,4 +29,6 @@ public class ReservationQueryServiceImpl implements ReservationQueryService {
     public Optional<Reservation> handleGetReservationById(Long id) {
         return reservationRepository.findById(id);
     }
+
+
 }
