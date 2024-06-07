@@ -7,6 +7,8 @@ import com.backend.tripmate.reservation.domain.model.entities.PriceDetails;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -32,7 +34,7 @@ public class Reservation {
     private PriceDetails priceDetails;
 
     @Column(name = "total", nullable = false)
-    private Double total;
+    private BigDecimal total = BigDecimal.ZERO;
 
     @Column(name = "cupon_descuento", length = 20)
     private String cuponDescuento;

@@ -25,7 +25,7 @@ public class ReservationController {
         this.reservationQueryService = reservationQueryService;
     }
 
-    @PostMapping("/api/v1/reservation")
+    @PostMapping("/api/v1/reservations")
     public void createReservation(@RequestBody CreateReservationCommand command) {
         PriceDetailsInput priceDetails = command.getPriceDetails();
         if (priceDetails.getTotal() == null) {
@@ -34,7 +34,7 @@ public class ReservationController {
         reservationCommandService.handle(command);
     }
 
-    @GetMapping
+    @GetMapping("/api/v1/reservations")
     public List<Reservation> getAllReservations() {
         return reservationQueryService.handleGetAllReservations();
     }
