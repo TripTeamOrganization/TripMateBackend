@@ -4,16 +4,16 @@ import com.backend.tripmate.reservation.domain.model.entities.Reservation;
 import com.backend.tripmate.reservation.interfaces.rest.resources.UserResource;
 
 public class UserResourceFromEntityAssembler {
-    public static UserResource toResourceFromEntity(Reservation user) {
+    public static UserResource toResourceFromEntity(Reservation reservation) {
         return new UserResource(
-            user.getId(),
-            user.getName(),
-            user.getApellidos(),
-            user.getDni(),
-            user.getEmail(),
-            user.getPassword(),
-            user.getTelefono(),
-            user.getPlan()
+            reservation.getId(),
+            reservation.getUser().getNombre(),
+            reservation.getUser().getApellidos(),
+            reservation.getUser().getDni(),
+            reservation.getUser().getEmail(),
+            reservation.getUser().getPassword(),
+            reservation.getUser().getTelefono(),
+            reservation.getUser().getPlan()
         );
     }
 }

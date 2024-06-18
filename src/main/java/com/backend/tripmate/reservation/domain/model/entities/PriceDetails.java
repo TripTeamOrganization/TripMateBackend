@@ -15,9 +15,6 @@ public class PriceDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "precio", nullable = false)
-    private Double precio;
-
     @Column(name = "total", nullable = false)
     private Double total;
 

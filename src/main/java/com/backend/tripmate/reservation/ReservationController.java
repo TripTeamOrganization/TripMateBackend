@@ -1,57 +1,50 @@
-    package com.backend.tripmate.reservation;
+package com.backend.tripmate.reservation;
 
-    import com.backend.tripmate.reservation.application.internal.commandservices.ReservationCommandServiceImpl;
-    import com.backend.tripmate.reservation.domain.model.commands.CreateReservationCommand;
-    import com.backend.tripmate.reservation.domain.model.queries.GetAllReservationQuery;
-    import com.backend.tripmate.reservation.domain.services.ReservationQueryService;
-    import com.backend.tripmate.reservation.interfaces.rest.resources.UserResource;
-    import com.backend.tripmate.reservation.interfaces.rest.transform.UserResourceFromEntityAssembler;
-    import org.springframework.http.HttpStatus;
-    import org.springframework.http.ResponseEntity;
-    import org.springframework.web.bind.annotation.*;
+import com.backend.tripmate.reservation.application.internal.commandservices.ReservationCommandServiceImpl;
+import com.backend.tripmate.reservation.domain.exceptions.ReservationNotFoundException;
+import com.backend.tripmate.reservation.domain.model.commands.CreateReservationCommand;
+import com.backend.tripmate.reservation.domain.model.commands.PriceDetailsInput;
+import com.backend.tripmate.reservation.domain.model.entities.Reservation;
+import com.backend.tripmate.reservation.domain.services.ReservationQueryService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
 
-    import java.util.List;
+import java.util.List;
 
-    import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+@RestController
+public class ReservationController {
 
-    @RestController
-    @RequestMapping(value = "/api/v1/user", produces = APPLICATION_JSON_VALUE)
-    public class ReservationController {
-        private final ReservationQueryService userQueryService;
-        private final ReservationCommandServiceImpl reservationCommandServiceImpl;
+    private final ReservationCommandServiceImpl reservationCommandService;
+    private final ReservationQueryService reservationQueryService;
 
-        public ReservationController(ReservationQueryService userQueryService, ReservationCommandServiceImpl reservationCommandServiceImpl) {
-            this.userQueryService = userQueryService;
-            this.reservationCommandServiceImpl = reservationCommandServiceImpl;
-        }
-
-        @GetMapping
-        public ResponseEntity<List<UserResource>> getAllUser() {
-            var getAllUserQuery = new GetAllReservationQuery();
-            var users = userQueryService.handle(getAllUserQuery);
-            var userResources = users.stream().map(UserResourceFromEntityAssembler::toResourceFromEntity).toList();
-            return ResponseEntity.ok(userResources);
-        }
-
-        @PostMapping
-        public ResponseEntity<UserResource> createUser(@RequestBody CreateReservationCommand createUserCommand) {
-            reservationCommandServiceImpl.handle(createUserCommand);
-            return ResponseEntity.status(HttpStatus.CREATED).build();
-        }
-
-
-        public ResponseEntity<List<UserResource>> getAllUsers() {
-
-            //
-            var getAllUserQuery = new GetAllReservationQuery();
-
-            //hand
-            var users = userQueryService.handle(getAllUserQuery);
-
-            //convert a ActivityResource
-            var activityResources = users.stream().map(UserResourceFromEntityAssembler::toResourceFromEntity).toList();
-
-            //return.
-            return ResponseEntity.ok(activityResources);
-        }
+    @Autowired
+    public ReservationController(ReservationCommandServiceImpl reservationCommandService, ReservationQueryService reservationQueryService) {
+        this.reservationCommandService = reservationCommandService;
+        this.reservationQueryService = reservationQueryService;
     }
+
+    @PostMapping("/api/v1/reservations")
+    public void createReservation(@RequestBody CreateReservationCommand command) {
+        PriceDetailsInput priceDetails = command.getPriceDetails();
+        if (priceDetails.getTotal() == null) {
+            priceDetails.setTotal(0.0);
+        }
+        reservationCommandService.handle(command);
+    }
+
+    @GetMapping("/api/v1/reservations")
+    public List<Reservation> getAllReservations() {
+        return reservationQueryService.handleGetAllReservations();
+    }
+
+    @GetMapping("/{id}")
+    public Reservation getReservation(@PathVariable Long id) {
+        if (id == null) {
+            throw new IllegalArgumentException("ID must not be null");
+        }
+        return reservationQueryService.handleGetReservationById(id)
+                .orElseThrow(() -> new ReservationNotFoundException(id));
+    }
+}
