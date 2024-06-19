@@ -3,12 +3,9 @@ package com.backend.tripmate.flights.interfaces.rest.resources;
 public class FlightResource {
     private int idVuelo;
     private String nombreAerolinea;
-    private String fechaHoraVuelo;
-    private int numeroAsiento;
-    private String destino;
+    private String descripcion;
     private float precio;
-    private String descuento;
-    private int idTipoVuelo;
+;
 
     // Getters and Setters
     public int getIdVuelo() {
@@ -27,28 +24,13 @@ public class FlightResource {
         this.nombreAerolinea = nombreAerolinea;
     }
 
-    public String getFechaHoraVuelo() {
-        return fechaHoraVuelo;
+
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setFechaHoraVuelo(String fechaHoraVuelo) {
-        this.fechaHoraVuelo = fechaHoraVuelo;
-    }
-
-    public int getNumeroAsiento() {
-        return numeroAsiento;
-    }
-
-    public void setNumeroAsiento(int numeroAsiento) {
-        this.numeroAsiento = numeroAsiento;
-    }
-
-    public String getDestino() {
-        return destino;
-    }
-
-    public void setDestino(String destino) {
-        this.destino = destino;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public float getPrecio() {
@@ -59,19 +41,4 @@ public class FlightResource {
         this.precio = precio;
     }
 
-    public String getDescuento() {
-        return descuento;
-    }
-
-    public void setDescuento(String descuento) {
-        this.descuento = descuento;
-    }
-
-    public int getIdTipoVuelo() {
-        return idTipoVuelo;
-    }
-
-    public void setIdTipoVuelo(int idTipoVuelo) {
-        this.idTipoVuelo = idTipoVuelo;
-    }
 }

@@ -1,28 +1,18 @@
-package com.backend.tripmate.flights.domain.model.entities;
+package com.backend.tripmate.flights.domain.model.commands;
 
-
-import jakarta.persistence.*;
-
-import java.time.LocalDateTime;
-
-@Entity
-public class Flight {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idVuelo;
+public class UpdateFlightCommand {
+    private int id;
     private String nombreAerolinea;
-    @Column(name = "descripcion", nullable = false, length = 1500)
     private String descripcion;
     private float precio;
 
 
-    // Getters and Setters
-    public int getIdVuelo() {
-        return idVuelo;
+    public int getId() {
+        return id;
     }
 
-    public void setIdVuelo(int idVuelo) {
-        this.idVuelo = idVuelo;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNombreAerolinea() {
@@ -32,6 +22,7 @@ public class Flight {
     public void setNombreAerolinea(String nombreAerolinea) {
         this.nombreAerolinea = nombreAerolinea;
     }
+
 
     public String getDescripcion() {
         return descripcion;
@@ -48,5 +39,4 @@ public class Flight {
     public void setPrecio(float precio) {
         this.precio = precio;
     }
-
 }
