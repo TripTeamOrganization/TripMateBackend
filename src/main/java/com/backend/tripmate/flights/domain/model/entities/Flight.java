@@ -1,6 +1,5 @@
 package com.backend.tripmate.flights.domain.model.entities;
 
-
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
