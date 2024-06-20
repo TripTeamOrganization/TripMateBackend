@@ -2,6 +2,8 @@ package com.backend.tripmate.flights;
 
 import com.backend.tripmate.flights.application.internal.commandservices.FlightCommandServiceImpl;
 import com.backend.tripmate.flights.domain.model.commands.CreateFlightCommand;
+import com.backend.tripmate.flights.domain.model.commands.DeleteFlightCommand;
+import com.backend.tripmate.flights.domain.model.commands.UpdateFlightCommand;
 import com.backend.tripmate.flights.domain.model.queries.GetAllFlightsQuery;
 import com.backend.tripmate.flights.domain.model.queries.GetFlightByIdQuery;
 import com.backend.tripmate.flights.application.internal.queryservices.FlightQueryService;
@@ -35,7 +37,7 @@ public class FlightsController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<FlightResource> getFlightById(@PathVariable int id) {
+    public ResponseEntity<FlightResource> getFlightById(@PathVariable Integer id) {
         var getFlightByIdQuery = new GetFlightByIdQuery(id);
         var flight = flightQueryService.handle(getFlightByIdQuery);
         var flightResource = FlightResourceFromEntityAssembler.toResourceFromEntity(flight);
@@ -46,5 +48,19 @@ public class FlightsController {
     public ResponseEntity<FlightResource> createFlight(@RequestBody CreateFlightCommand createFlightCommand) {
         flightCommandServiceImpl.handle(createFlightCommand);
         return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> updateFlight(@PathVariable Integer id, @RequestBody UpdateFlightCommand updateFlightCommand) {
+        updateFlightCommand.setId(id);
+        flightCommandServiceImpl.handle(updateFlightCommand);
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteFlight(@PathVariable Integer id) {
+        var deleteFlightCommand = new DeleteFlightCommand(id);
+        flightCommandServiceImpl.handle(deleteFlightCommand);
+        return ResponseEntity.noContent().build();
     }
 }

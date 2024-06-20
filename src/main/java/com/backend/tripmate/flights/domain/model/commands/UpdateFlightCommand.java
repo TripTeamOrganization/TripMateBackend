@@ -1,19 +1,18 @@
-package com.backend.tripmate.flights.interfaces.rest.resources;
+package com.backend.tripmate.flights.domain.model.commands;
 
-public class FlightResource {
-    private int idVuelo;
+public class UpdateFlightCommand {
+    private int id;
     private String nombreAerolinea;
     private String descripcion;
     private float precio;
-;
 
-    // Getters and Setters
-    public int getIdVuelo() {
-        return idVuelo;
+
+    public int getId() {
+        return id;
     }
 
-    public void setIdVuelo(int idVuelo) {
-        this.idVuelo = idVuelo;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNombreAerolinea() {
@@ -40,5 +39,4 @@ public class FlightResource {
     public void setPrecio(float precio) {
         this.precio = precio;
     }
-
 }
