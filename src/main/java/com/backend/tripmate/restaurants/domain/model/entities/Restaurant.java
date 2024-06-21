@@ -31,6 +31,10 @@ public class Restaurant {
         this.mustTry = command.mustTry();
     }
 
+    public Restaurant() {
+
+    }
+
     public Restaurant updateInformation(String name, String image, String locationCost, String mustTry) {
         this.name = name;
         this.image = image;

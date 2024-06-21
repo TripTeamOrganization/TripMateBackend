@@ -30,9 +30,7 @@ public class RestaurantCommandServiceImpl implements RestaurantCommandService {
 
     @Override
     public Optional<Restaurant> handle(UpdateRestaurantCommand command) {
-        if(restaurantRepository.existsByName(command.name())){
-            throw new IllegalArgumentException("Restaurant already exists");
-        }
+        validateUpdateRestaurantCommand(command);
         var result = restaurantRepository.findById(command.id());
         if(result.isEmpty()){
             throw new IllegalArgumentException("Restaurant does not exist");
@@ -43,6 +41,24 @@ public class RestaurantCommandServiceImpl implements RestaurantCommandService {
             return Optional.of(updatedRestaurant);
         } catch (Exception e) {
             throw new IllegalArgumentException("Error while updating restaurant: " + e.getMessage());
+        }
+    }
+
+    void validateUpdateRestaurantCommand(UpdateRestaurantCommand command) {
+        if(command.id() == null) {
+            throw new IllegalArgumentException("Restaurant id is required");
+        }
+        if(command.name() == null) {
+            throw new IllegalArgumentException("Restaurant name is required");
+        }
+        if(command.image() == null) {
+            throw new IllegalArgumentException("Restaurant image is required");
+        }
+        if(command.locationCost() == null) {
+            throw new IllegalArgumentException("Restaurant location cost is required");
+        }
+        if(command.mustTry() == null) {
+            throw new IllegalArgumentException("Restaurant must try is required");
         }
     }
 
