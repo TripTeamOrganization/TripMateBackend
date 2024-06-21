@@ -12,7 +12,7 @@ public class Flight {
     private String nombreAerolinea;
     @Column(name = "descripcion", nullable = false, length = 1500)
     private String descripcion;
-    private float precio;
+    private String precio;
 
 
     // Getters and Setters
@@ -40,11 +40,11 @@ public class Flight {
         this.descripcion = descripcion;
     }
 
-    public float getPrecio() {
+    public String getPrecio() {
         return precio;
     }
 
-    public void setPrecio(float precio) {
+    public void setPrecio(String precio) {
         this.precio = precio;
     }
 

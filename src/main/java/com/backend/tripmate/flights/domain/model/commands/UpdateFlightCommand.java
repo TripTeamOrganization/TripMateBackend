@@ -4,7 +4,7 @@ public class UpdateFlightCommand {
     private int id;
     private String nombreAerolinea;
     private String descripcion;
-    private float precio;
+    private String precio;
 
 
     public int getId() {
@@ -32,11 +32,11 @@ public class UpdateFlightCommand {
         this.descripcion = descripcion;
     }
 
-    public float getPrecio() {
+    public String getPrecio() {
         return precio;
     }
 
-    public void setPrecio(float precio) {
+    public void setPrecio(String precio) {
         this.precio = precio;
     }
 }

@@ -3,7 +3,7 @@ package com.backend.tripmate.flights.domain.model.commands;
 public class CreateFlightCommand {
     private String nombreAerolinea;
     private String descripcion;
-    private float precio;
+    private String precio;
 
     // Getters and Setters
     public String getNombreAerolinea() {
@@ -22,11 +22,11 @@ public class CreateFlightCommand {
         this.descripcion = descripcion;
     }
 
-    public float getPrecio() {
+    public String getPrecio() {
         return precio;
     }
 
-    public void setPrecio(float precio) {
+    public void setPrecio(String precio) {
         this.precio = precio;
     }
 }
