@@ -13,6 +13,7 @@ import com.backend.tripmate.activities.interfaces.rest.transform.ActivityResourc
 import com.backend.tripmate.activities.interfaces.rest.transform.CreateActivityCommandFromResourceAssembler;
 import com.backend.tripmate.activities.interfaces.rest.transform.UpdateActivityCommandFromResourceAssembler;
 import org.springframework.http.HttpStatus;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
