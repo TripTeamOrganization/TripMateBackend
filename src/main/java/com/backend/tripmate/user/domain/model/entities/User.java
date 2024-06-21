@@ -2,6 +2,9 @@ package com.backend.tripmate.user.domain.model.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.data.annotation.Id;
+
+import java.util.Set;
 
 @Getter
 @Setter
@@ -11,13 +14,16 @@ import lombok.*;
 @Entity
 @Table(name = "users")
 public class User {
+
+    @jakarta.persistence.Id
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
     private String nombre;
-
+    @Column(nullable = false, unique = true)
+    private String username;
     @Column(nullable = false)
     private String apellidos;
 
@@ -32,6 +38,15 @@ public class User {
 
     private String telefono;
     private String plan;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public Set<String> getRoles() {
+
+        return Set.of("ROLE_USER");
+    }
 
     public Long getId() {
         return id;
@@ -96,4 +111,10 @@ public class User {
     public void setPlan(String plan) {
         this.plan = plan;
     }
+
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
 }
