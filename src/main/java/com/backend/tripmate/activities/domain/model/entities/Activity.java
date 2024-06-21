@@ -35,6 +35,9 @@ public class Activity {
         this.price = command.price();
     }
 
+    public Activity() {
+    }
+
     public Activity updateInformation(String name, String imagePath, String description, String location, String price) {
         this.name = name;
         this.imagePath = imagePath;

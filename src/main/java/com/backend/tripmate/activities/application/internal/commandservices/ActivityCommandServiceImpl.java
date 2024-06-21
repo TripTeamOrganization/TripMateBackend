@@ -34,9 +34,7 @@ public class ActivityCommandServiceImpl implements ActivityCommandService {
 
     @Override
     public Optional<Activity> handle(UpdateActivityCommand command) {
-        if(activityRepository.existsByName(command.name())) {
-            throw new IllegalArgumentException("Activity with same title already exists");
-        }
+        validateUpdateCommand(command);
         var result = activityRepository.findById(command.id());
         if(result.isEmpty()) {
             throw new IllegalArgumentException("Activity does not exist");
@@ -47,6 +45,27 @@ public class ActivityCommandServiceImpl implements ActivityCommandService {
             return Optional.of(updatedActivity);
         } catch (Exception e) {
             throw new IllegalArgumentException("Error while updating activity: " + e.getMessage());
+        }
+    }
+
+    private void validateUpdateCommand(UpdateActivityCommand command) {
+        if (command.id() == null) {
+            throw new IllegalArgumentException("Activity id is required");
+        }
+        if (command.name() == null) {
+            throw new IllegalArgumentException("Activity name is required");
+        }
+        if (command.imagePath() == null) {
+            throw new IllegalArgumentException("Activity image path is required");
+        }
+        if (command.description() == null) {
+            throw new IllegalArgumentException("Activity description is required");
+        }
+        if (command.location() == null) {
+            throw new IllegalArgumentException("Activity location is required");
+        }
+        if (command.price() == null) {
+            throw new IllegalArgumentException("Activity price is required");
         }
     }
 

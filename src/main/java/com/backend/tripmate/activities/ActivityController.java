@@ -1,6 +1,7 @@
 package com.backend.tripmate.activities;
 
 import com.backend.tripmate.activities.domain.commands.DeleteActivityCommand;
+import com.backend.tripmate.activities.domain.model.queries.GetActivitiesByIdQuery;
 import com.backend.tripmate.activities.domain.services.ActivityCommandService;
 import com.backend.tripmate.activities.interfaces.rest.resources.ActivityResource;
 import com.backend.tripmate.activities.domain.model.queries.GetAllActivitiesQuery;
@@ -56,6 +57,17 @@ public class ActivityController {
         var activities = activityQueryService.handle(getAllActivitiesQuery);
         var activityResources = activities.stream().map(ActivityResourceFromEntityAssembler::toResourceFromEntity).toList();
         return ResponseEntity.ok(activityResources);
+    }
+
+    @GetMapping("/{activityId}")
+    public ResponseEntity<ActivityResource> getActivityById(@PathVariable(name = "activityId") Long activityId) {
+        var getActivitiesByIdQuery = new GetActivitiesByIdQuery(activityId);
+        var activity = activityQueryService.handle(getActivitiesByIdQuery);
+        if (activity.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        var activityResource = ActivityResourceFromEntityAssembler.toResourceFromEntity(activity.get());
+        return ResponseEntity.ok(activityResource);
     }
 
     @PutMapping("/{activityId}")
