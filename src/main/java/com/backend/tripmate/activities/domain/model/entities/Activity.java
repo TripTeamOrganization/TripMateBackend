@@ -1,5 +1,6 @@
 package com.backend.tripmate.activities.domain.model.entities;
 
+import com.backend.tripmate.activities.domain.commands.CreateActivityCommand;
 import jakarta.persistence.*;
 import lombok.Getter;
 
@@ -26,5 +27,20 @@ public class Activity {
     @Column(name = "precio", length = 50, nullable = false)
     private String price;
 
-    //no tiene Foreign Key.
+    public Activity(CreateActivityCommand command) {
+        this.name = command.name();
+        this.imagePath = command.imagePath();
+        this.description = command.description();
+        this.location = command.location();
+        this.price = command.price();
+    }
+
+    public Activity updateInformation(String name, String imagePath, String description, String location, String price) {
+        this.name = name;
+        this.imagePath = imagePath;
+        this.description = description;
+        this.location = location;
+        this.price = price;
+        return this;
+    }
 }
