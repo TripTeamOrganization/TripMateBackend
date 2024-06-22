@@ -1,7 +1,9 @@
 package com.backend.tripmate.iam.infrastructure.tokens.jwt.services;
 
 
+import com.backend.tripmate.iam.infrastructure.tokens.jwt.BearerTokenService;
 import io.jsonwebtoken.*;
+import io.jsonwebtoken.security.Keys;
 
 import jakarta.servlet.http.HttpServletRequest;
 

@@ -1,4 +1,5 @@
 package com.backend.tripmate.iam.infrastructure.hashing.bcrypt.services;
+import com.backend.tripmate.iam.infrastructure.hashing.bcrypt.BCryptHashingService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 

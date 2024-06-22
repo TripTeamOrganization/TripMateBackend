@@ -1,5 +1,7 @@
 package com.backend.tripmate.iam.infrastructure.authorization.sfs.services;
 
+import com.backend.tripmate.iam.infrastructure.authorization.sfs.model.UserDetailsImpl;
+import com.backend.tripmate.iam.infrastructure.persistence.jpa.repositories.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

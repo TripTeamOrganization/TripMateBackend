@@ -4,6 +4,7 @@ package com.backend.tripmate.iam.application.internal.commandservices;
 import com.backend.tripmate.iam.application.internal.outboundservices.hashing.HashingService;
 import com.backend.tripmate.iam.application.internal.outboundservices.tokens.TokenService;
 import com.backend.tripmate.iam.domain.model.aggregates.User;
+import com.backend.tripmate.iam.domain.model.commands.SignInCommand;
 import com.backend.tripmate.iam.domain.model.commands.SignUpCommand;
 import com.backend.tripmate.iam.domain.model.valueobjects.Roles;
 import com.backend.tripmate.iam.domain.services.UserCommandService;

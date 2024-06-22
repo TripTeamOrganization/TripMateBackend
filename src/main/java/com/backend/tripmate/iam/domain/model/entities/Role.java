@@ -1,5 +1,6 @@
 package com.backend.tripmate.iam.domain.model.entities;
 
+import com.backend.tripmate.iam.domain.model.valueobjects.Roles;
 import jakarta.persistence.*;
 import lombok.Getter;
 

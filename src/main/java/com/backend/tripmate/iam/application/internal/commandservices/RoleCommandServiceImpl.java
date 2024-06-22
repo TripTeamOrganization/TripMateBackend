@@ -1,6 +1,7 @@
 package com.backend.tripmate.iam.application.internal.commandservices;
 
 import com.backend.tripmate.iam.domain.model.commands.SeedRolesCommand;
+import com.backend.tripmate.iam.domain.model.entities.Role;
 import com.backend.tripmate.iam.domain.model.valueobjects.Roles;
 import com.backend.tripmate.iam.domain.services.RoleCommandService;
 import com.backend.tripmate.iam.infrastructure.persistence.jpa.repositories.RoleRepository;

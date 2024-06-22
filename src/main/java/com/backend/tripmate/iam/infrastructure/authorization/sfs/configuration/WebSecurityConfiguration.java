@@ -1,5 +1,8 @@
 package com.backend.tripmate.iam.infrastructure.authorization.sfs.configuration;
 
+import com.backend.tripmate.iam.infrastructure.authorization.sfs.pipeline.BearerAuthorizationRequestFilter;
+import com.backend.tripmate.iam.infrastructure.hashing.bcrypt.BCryptHashingService;
+import com.backend.tripmate.iam.infrastructure.tokens.jwt.BearerTokenService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -66,8 +69,8 @@ public class WebSecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         // CORS default configuration
-        http.cors(configurer -> configurer.configurationSource( _ -> {
-            var cors = new CorsConfiguration();
+        http.cors(configurer -> configurer.configurationSource(request -> {
+            CorsConfiguration cors = new CorsConfiguration();
             cors.setAllowedOrigins(List.of("*"));
             cors.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE"));
             cors.setAllowedHeaders(List.of("*"));

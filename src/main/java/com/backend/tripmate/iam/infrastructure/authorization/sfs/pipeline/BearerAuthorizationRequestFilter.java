@@ -1,5 +1,7 @@
 package com.backend.tripmate.iam.infrastructure.authorization.sfs.pipeline;
 
+import com.backend.tripmate.iam.infrastructure.authorization.sfs.model.UsernamePasswordAuthenticationTokenBuilder;
+import com.backend.tripmate.iam.infrastructure.tokens.jwt.BearerTokenService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

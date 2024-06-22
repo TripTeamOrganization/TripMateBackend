@@ -1,5 +1,6 @@
 package com.backend.tripmate.iam.infrastructure.persistence.jpa.repositories;
 
+import com.backend.tripmate.iam.domain.model.aggregates.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

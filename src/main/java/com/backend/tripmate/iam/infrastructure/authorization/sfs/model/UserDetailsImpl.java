@@ -1,6 +1,7 @@
 package com.backend.tripmate.iam.infrastructure.authorization.sfs.model;
 
 
+import com.backend.tripmate.iam.domain.model.aggregates.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

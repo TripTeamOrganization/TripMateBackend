@@ -1,6 +1,7 @@
 package com.backend.tripmate.iam.domain.model.aggregates;
 
 import com.backend.tripmate.iam.domain.model.entities.Role;
+import com.backend.tripmate.shared.domain.model.aggregates.AuditableAbstractAggregateRoot;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
