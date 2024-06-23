@@ -7,13 +7,7 @@ public class UserResourceFromEntityAssembler {
     public static UserResource toResourceFromEntity(Reservation reservation) {
         return new UserResource(
             reservation.getId(),
-            reservation.getUser().getNombre(),
-            reservation.getUser().getApellidos(),
-            reservation.getUser().getDni(),
-            reservation.getUser().getEmail(),
-            reservation.getUser().getPassword(),
-            reservation.getUser().getTelefono(),
-            reservation.getUser().getPlan()
+            reservation.getUser().getUsername()
         );
     }
 }

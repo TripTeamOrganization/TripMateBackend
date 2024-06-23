@@ -1,6 +1,6 @@
 package com.backend.tripmate.reservation.domain.model.entities;
 
-import com.backend.tripmate.user.domain.model.entities.User;
+import com.backend.tripmate.iam.domain.model.aggregates.User;
 import com.backend.tripmate.reservation.domain.model.entities.PaymentMethod;
 import com.backend.tripmate.reservation.domain.model.entities.PriceDetails;
 
