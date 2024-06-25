@@ -2,67 +2,47 @@ package com.backend.tripmate.flights.domain.model.commands;
 
 public class CreateFlightCommand {
     private String nombreAerolinea;
-    private String fechaHoraVuelo;
-    private int numeroAsiento;
-    private String destino;
-    private float precio;
-    private String descuento;
-    private int idTipoVuelo;
+    private String imagePath;
+    private String descripcion;
+    private String precio;
+
+    public CreateFlightCommand(String nombreAerolinea, String imagePath, String descripcion, String precio) {
+        this.nombreAerolinea = nombreAerolinea;
+        this.imagePath = imagePath;
+        this.descripcion = descripcion;
+        this.precio = precio;
+    }
 
     // Getters and Setters
     public String getNombreAerolinea() {
         return nombreAerolinea;
     }
 
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
+
     public void setNombreAerolinea(String nombreAerolinea) {
         this.nombreAerolinea = nombreAerolinea;
     }
 
-    public String getFechaHoraVuelo() {
-        return fechaHoraVuelo;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setFechaHoraVuelo(String fechaHoraVuelo) {
-        this.fechaHoraVuelo = fechaHoraVuelo;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
-    public int getNumeroAsiento() {
-        return numeroAsiento;
-    }
-
-    public void setNumeroAsiento(int numeroAsiento) {
-        this.numeroAsiento = numeroAsiento;
-    }
-
-    public String getDestino() {
-        return destino;
-    }
-
-    public void setDestino(String destino) {
-        this.destino = destino;
-    }
-
-    public float getPrecio() {
+    public String getPrecio() {
         return precio;
     }
 
-    public void setPrecio(float precio) {
+    public void setPrecio(String precio) {
         this.precio = precio;
-    }
-
-    public String getDescuento() {
-        return descuento;
-    }
-
-    public void setDescuento(String descuento) {
-        this.descuento = descuento;
-    }
-
-    public int getIdTipoVuelo() {
-        return idTipoVuelo;
-    }
-
-    public void setIdTipoVuelo(int idTipoVuelo) {
-        this.idTipoVuelo = idTipoVuelo;
     }
 }

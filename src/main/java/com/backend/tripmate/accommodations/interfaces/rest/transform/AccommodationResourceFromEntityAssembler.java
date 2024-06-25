@@ -11,7 +11,7 @@ public class AccommodationResourceFromEntityAssembler {
                 accommodation.getName(),
                 accommodation.getImagePath(),
                 accommodation.getDescription(),
-                accommodation.getLocation(),
+                accommodation.getUbicacion(),
                 accommodation.getPrice()
         );
     }

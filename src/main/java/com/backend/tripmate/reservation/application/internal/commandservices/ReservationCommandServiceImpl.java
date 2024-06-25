@@ -1,15 +1,15 @@
 package com.backend.tripmate.reservation.application.internal.commandservices;
 
+import com.backend.tripmate.iam.domain.model.aggregates.User;
+import com.backend.tripmate.iam.infrastructure.persistence.jpa.repositories.UserRepository;
 import com.backend.tripmate.reservation.domain.model.commands.ReservationCommandService;
 import com.backend.tripmate.reservation.domain.model.entities.Reservation;
 import com.backend.tripmate.reservation.domain.model.commands.CreateReservationCommand;
 import com.backend.tripmate.reservation.infrastructure.persistence.jpa.repositories.ReservationRepository;
-import com.backend.tripmate.user.infrastructure.persistence.jpa.repositories.UserRepository;
 import com.backend.tripmate.reservation.infrastructure.persistence.jpa.repositories.PaymentMethodRepository;
 import com.backend.tripmate.reservation.infrastructure.persistence.jpa.repositories.PriceDetailsRepository;
 import com.backend.tripmate.reservation.domain.model.entities.PaymentMethod;
 import com.backend.tripmate.reservation.domain.model.entities.PriceDetails;
-import com.backend.tripmate.user.domain.model.entities.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
